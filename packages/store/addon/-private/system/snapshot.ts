@@ -48,7 +48,7 @@ function relationshipsFor(instance: Snapshot): Relationships {
 }
 
 function schemaIsDSModel(schema: ModelSchema | DSModelSchema): schema is DSModelSchema {
-  return Object.prototype.hasOwnProperty.call(schema, 'isModel');
+  return 'isModel' in schema && schema.isModel === true;
 }
 
 function relationshipStateFor(instance: Snapshot, propertyName: string): BelongsToRelationship | HasManyRelationship {
