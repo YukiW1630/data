@@ -19,7 +19,7 @@ export default class ManyRelationship extends Relationship {
   _willUpdateManyArray: boolean;
   _pendingManyArrayUpdates: any;
   key: string;
-  kind: 'hasMany';
+  kind: 'hasMany' = 'hasMany';
 
   constructor(
     store: any,
@@ -33,7 +33,6 @@ export default class ManyRelationship extends Relationship {
     this.currentState = [];
     this._willUpdateManyArray = false;
     this._pendingManyArrayUpdates = null;
-    this.key = relationshipMeta.key;
   }
 
   addCanonicalIdentifier(identifier: StableRecordIdentifier, idx?: number) {
@@ -178,8 +177,10 @@ export default class ManyRelationship extends Relationship {
 
     for (let i = 0, l = identifiers.length; i < l; i++) {
       let identifier = identifiers[i];
-      this.removeCanonicalIdentifier(identifier);
-      this.addCanonicalIdentifier(identifier, i);
+      if (members.list[i] !== identifier) {
+        this.removeCanonicalIdentifier(identifier);
+        this.addCanonicalIdentifier(identifier, i);
+      }
     }
   }
 

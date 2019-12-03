@@ -13,8 +13,7 @@ import { identifierCacheFor } from '@ember-data/store/-private';
 export default class BelongsToRelationship extends Relationship {
   inverseIdentifier: StableRecordIdentifier | null;
   canonicalState: StableRecordIdentifier | null;
-  key: string;
-  kind: 'belongsTo';
+  kind: 'belongsTo' = 'belongsTo';
 
   constructor(
     store: any,
@@ -24,10 +23,8 @@ export default class BelongsToRelationship extends Relationship {
     inverseIsAsync: boolean
   ) {
     super(store, inverseKey, relationshipMeta, identifier, inverseIsAsync);
-    this.key = relationshipMeta.key;
     this.inverseIdentifier = null;
     this.canonicalState = null;
-    this.key = relationshipMeta.key;
   }
 
   setIdentifier(identifier: StableRecordIdentifier | null) {

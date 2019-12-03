@@ -647,6 +647,12 @@ export default class Relationship {
     let hasRelationshipDataProperty = false;
     let hasLink = false;
 
+    if (initial === undefined) {
+      if (this.canonicalMembers.size === 0) {
+        initial = true;
+      }
+    }
+
     if (payload.meta) {
       this.updateMeta(payload.meta);
     }
